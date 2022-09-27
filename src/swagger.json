@@ -1,0 +1,633 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de busca de carros",
+        "description": "Api faz busca de carros cadastrados nos bancos de dado"
+    },
+    "paths": {
+        "/detran": {
+            "get": {
+                "description": "Devolve lista de carros cadastrados",
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/carrosDetran"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        },
+        "/detran/{id}": {
+            "get": {
+                "description": "Exibe um carro pelo ID",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "number"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Carro encontrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/carrosDetran"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            },
+            "put": {
+                "description": "Atualiza uma propriedade do Carro",
+                "requestBody": {
+                    "description": "Atualiza característica do carro",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "parada": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "number"
+                    }
+                }],
+                "responses": {
+                    "204": {
+                        "description": "Carro atualizado com sucesso"
+                    },
+                    "404": {
+                        "description": "Veículo não encontrado"
+
+                    }
+                }
+            }
+        },
+        "/pm": {
+            "get": {
+                "description": "Devolve lista de carros cadastrados",
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "content": {
+                        "application / json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#components/schemas/carrosPM"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pm/{id}": {
+            "get": {
+                "description": "Exibe um carro pelo ID",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "number"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Carro encontrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#components/schemas/carrosPM"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            },
+            "put": {
+                "description": "Atualiza uma propriedade do Carro",
+                "requestBody": {
+                    "description": "Atualiza característica do carro",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    " chamar_guincho": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "number"
+                    }
+                }],
+                "responses": {
+                    "204": {
+                        "description": "Carro atualizado com sucesso"
+                    },
+                    "404": {
+                        "description": "Veículo não encontrado"
+
+                    }
+                }
+            }
+        },
+        "/prf": {
+            "get": {
+               "description": "Lista de carros cadastrados no banco de dados da PRF",
+               "responses": {
+                  "200": {
+                     "description": "Sucesso",
+                     "content": {
+                        "application/json": {
+                           "schema": {
+                              "type": "array",
+                              "items": {
+                                 "$ref": "#/components/schemas/carrosPRF"
+                              }
+                           }
+                        }
+                     }
+                  }
+                  
+               }
+            }
+         },
+         "/prf/{id}": {
+            "get": {
+               "description": "Exibe um veículo pelo ID",
+               "parameters": [
+                  {
+                     "name": "id",
+                     "in": "path",
+                     "required": true,
+                     "schema": {
+                        "type": "number"
+                     }
+                  }
+               ],
+               "responses": {
+                  "200": {
+                     "description": "Veículo encontrado com sucesso",
+                     "content": {
+                        "application/json": {
+                           "schema": {
+                              "$ref": "#/components/schemas/carrosPRF"
+                           }
+                        }
+                     }
+                  },
+                  "404": {
+                     "description": "Veículo não encontrado"
+                  }
+               }
+            },
+            "put": {
+               "description": "Atualiza uma propriedade do veículo",
+               "requestBody": {
+                  "description": "Atualiza característica do veículo",
+                  "required": true,
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "object",
+                           "properties": {
+                              "vistoria": {
+                                 "type": "boolean",
+                                 "example": true
+                              }
+                           }
+                        }
+                     }
+                  }
+               },
+               "parameters": [
+                  {
+                     "name": "id",
+                     "in": "path",
+                     "required": true,
+                     "schema": {
+                        "type": "number"
+                     }
+                  }
+               ],
+               "responses": {
+                  "204": {
+                     "description": "Veículo atualizado com sucesso"
+                  },
+                  "404": {
+                     "description": "Veículo não encontrado"
+                  }
+               }
+            }
+         },
+         "/pc": {
+            "get": {
+               "description": "Lista de carros cadastrados no banco de dados da PC",
+               "responses": {
+                  "200": {
+                     "description": "Sucesso",
+                     "content": {
+                        "application/json": {
+                           "schema": {
+                              "type": "array",
+                              "items": {
+                                 "$ref": "#/components/schemas/carrosPC"
+                              }
+                           }
+                        }
+                     }
+                  }
+                  
+               }
+            }
+         },
+         "/pc/{id}": {
+            "get": {
+               "description": "Exibe um veículo pelo ID",
+               "parameters": [
+                  {
+                     "name": "id",
+                     "in": "path",
+                     "required": true,
+                     "schema": {
+                        "type": "number"
+                     }
+                  }
+               ],
+               "responses": {
+                  "200": {
+                     "description": "Veículo encontrado com sucesso",
+                     "content": {
+                        "application/json": {
+                           "schema": {
+                              "$ref": "#/components/schemas/carrosPC"
+                           }
+                        }
+                     }
+                  },
+                  "404": {
+                     "description": "Veículo não encontrado"
+                  }
+               }
+            },
+            "put": {
+               "description": "Atualiza uma propriedade do veículo",
+               "requestBody": {
+                  "description": "Atualiza característica do veículo",
+                  "required": true,
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "object",
+                           "properties": {
+                              "busca_apreensao": {
+                                 "type": "boolean",
+                                 "example": true
+                              }
+                           }
+                        }
+                     }
+                  }
+               },
+               "parameters": [
+                  {
+                     "name": "id",
+                     "in": "path",
+                     "required": true,
+                     "schema": {
+                        "type": "number"
+                     }
+                  }
+               ],
+               "responses": {
+                  "204": {
+                     "description": "Veículo atualizado com sucesso"
+                  },
+                  "404": {
+                     "description": "Veículo não encontrado"
+                  }
+               }
+            }
+         }
+    },
+    "components": {
+        "schemas": {
+            "carrosDetran": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "identificador"
+                    },
+                    "placa": {
+                        "type": "string",
+                        "example": "PKJ - 1752"
+                    },
+                    "chassi": {
+                        "type": "string",
+                        "example": "9BWHE21JX24060831"
+                    },
+                    " modelo": {
+                        "type": "string",
+                        " example": "GOL GTI 2013"
+                    },
+                    " cor": {
+                        "type": "string",
+                        " example": "vermelho"
+                    },
+                    " marca": {
+                        "type": "string",
+                        " example": "Volkswagen"
+                    },
+                    " registro": {
+                        "type": "string",
+                        " example": "Iev de Souza"
+                    },
+                    " IPVA": {
+                        "type": "boolean",
+                        "  example": false
+                    },
+                    " multas_vencidas": {
+                        "type": "integer",
+                        " example": "3"
+                    },
+                    " total_multas": {
+                        "type": "string",
+                        " example": "R$ 327,78"
+                    },
+                    " sinistro": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    " seguro": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "parada": {
+                        "type": "boolean",
+                        "example": "false"
+                    }
+                }
+
+
+            },
+            "carrosPM": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "identificador"
+                    },
+                    "placa": {
+                        "type": "string",
+                        "example": "PKJ - 1752"
+                    },
+                    "chassi": {
+                        "type": "string",
+                        "example": "9BWHE21JX24060831"
+                    },
+                    " modelo": {
+                        "type": "string",
+                        " example": "GOL GTI 2013"
+                    },
+                    " cor": {
+                        "type": "string",
+                        " example": "vermelho"
+                    },
+                    " marca": {
+                        "type": "string",
+                        " example": "Volkswagen"
+                    },
+                    " registro": {
+                        "type": "string",
+                        " example": "Iev de Souza"
+                    },
+                    " IPVA": {
+                        "type": "boolean",
+                        "  example": false
+                    },
+                    " multas_vencidas": {
+                        "type": "integer",
+                        " example": "3"
+                    },
+                    " licenciamento": {
+                        "type": "boolean",
+                        " example": false
+                    },
+                    " roubo": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    " chamar_guincho": {
+                        "type": "boolean",
+                        "example": false
+                    }
+                    
+                }
+            },
+            "carrosPRF": {
+                "type": "object",
+                "properties": {
+                   "id": {
+                      "type": "number",
+                      "description": "identificador"
+                   },
+                   "placa": {
+                      "type": "string",
+                      "example": "BRA2E19"
+                   },
+                   "Cidade": {
+                      "type": "string",
+                      "example": "Brasília"
+                   },
+                   "Estado": {
+                      "type": "string",
+                      "example": "Distrito Federal"
+                   },
+                   "marca": {
+                      "type": "string",
+                      "example": "Volkswagen"
+                   },
+                   "modelo": {
+                      "type": "string",
+                      "example": "Golf 2.0 GTI"
+                   },
+                   "ano": {
+                      "type": "string",
+                      "example": "2019"
+                   },
+                   "cor": {
+                      "type": "string",
+                      "example": "Preto"
+                   },
+                   "registro": {
+                      "type": "string",
+                      "example": "Antonio Nunes"
+                   },
+                   "chassi": {
+                      "type": "string",
+                      "example": "9BWE08JX2117974"
+                   },
+                   "multas_total": {
+                      "type": "number",
+                      "example": 2
+                   },
+                   "multas_vencidas": {
+                      "type": "number",
+                      "example": 0
+                   },
+                   "valor_multas_vencidas": {
+                      "type": "string",
+                      "example": "R$ 0,00"
+                   },
+                   "IPVA": {
+                      "type": "boolean",
+                      "example": true
+                   },
+                   "vistoria": {
+                      "type": "boolean",
+                      "example": true
+                   },
+                   "sinistro": {
+                      "type": "boolean",
+                      "example": false
+                   },
+                   "furtado": {
+                      "type": "boolean",
+                      "example": false
+                   },
+                   "clonado": {
+                      "type": "boolean",
+                      "example": true
+                   }
+                }
+             },
+             "carrosPC": {
+                "type": "object",
+                "properties": {
+                   "id": {
+                      "type": "number",
+                      "description": "identificador"
+                   },
+                   "placa": {
+                      "type": "string",
+                      "example": "BRA2E19"
+                   },
+                   "Cidade": {
+                      "type": "string",
+                      "example": "Brasília"
+                   },
+                   "Estado": {
+                      "type": "string",
+                      "example": "Distrito Federal"
+                   },
+                   "marca": {
+                      "type": "string",
+                      "example": "Volkswagen"
+                   },
+                   "modelo": {
+                      "type": "string",
+                      "example": "Golf 2.0 GTI"
+                   },
+                   "ano": {
+                      "type": "string",
+                      "example": "2019"
+                   },
+                   "cor": {
+                      "type": "string",
+                      "example": "Preto"
+                   },
+                   "registro": {
+                      "type": "string",
+                      "example": "Antonio Nunes"
+                   },
+                   "chassi": {
+                      "type": "string",
+                      "example": "9BWE08JX2117974"
+                   },
+                   "multas_total": {
+                      "type": "number",
+                      "example": 2
+                   },
+                   "multas_vencidas": {
+                      "type": "number",
+                      "example": 0
+                   },
+                   "valor_multas_vencidas": {
+                      "type": "string",
+                      "example": "R$ 0,00"
+                   },
+                   "IPVA": {
+                      "type": "boolean",
+                      "example": true
+                   },
+                   "vistoria": {
+                      "type": "boolean",
+                      "example": true
+                   },
+                   "sinistro": {
+                      "type": "boolean",
+                      "example": false
+                   },
+                   "furtado": {
+                      "type": "boolean",
+                      "example": false
+                   },
+                   "clonado": {
+                      "type": "boolean",
+                      "example": true
+                   },
+                   "roubo": {
+                      "type": "boolean",
+                      "example": true
+                   },
+                   "busca_apreensao": {
+                      "type": "boolean",
+                      "example": true
+                   }
+                }
+             }
+        }
+    }
+}    
